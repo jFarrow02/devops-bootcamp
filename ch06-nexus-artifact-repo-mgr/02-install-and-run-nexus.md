@@ -64,7 +64,7 @@ Open <nexusserver_ip>:8081 in browser
 ## Repositories
 
 ### Repository Types
-1. Proxy: Linked to a remote repository (e.g. Maven). If a component is requested from the remote repo, the request will go thru proxy first and check whenter the package is available in Nexus. If YES, the dependency will be downloaded from Nexus. If NO, dependency will be downloaded and cached in Nexus FIRST.
+1. Proxy: Linked to a remote repository (e.g. Maven). If a component is requested from the remote repo, the request will go thru proxy first and check whether the package is available in Nexus. If YES, the dependency will be downloaded from Nexus. If NO, dependency will be downloaded and cached in Nexus FIRST.
     - Single endpoint for all package downloads
 
 2. Hosted: Primary storage for company-owned artifacts

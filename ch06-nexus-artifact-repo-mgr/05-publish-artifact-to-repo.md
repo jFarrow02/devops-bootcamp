@@ -1,9 +1,4 @@
 # Publish Artifact to a Repository
-Exercise: Upload a JAR file to existing hosted repository on Nexus from Maven and Gradle.
-
-- Maven/Gradle commands exist for pushing to remote repo
-- Must configure both tools to connect to Nexus (with Nexus repo URL &credentials)
-- Avoid giving admin credentials for connection; create NEW NEXUS USER with upload permissions
 
 ## Create Nexus User
 1. Users > Create local user
@@ -24,7 +19,39 @@ Exercise: Upload a JAR file to existing hosted repository on Nexus from Maven an
 
 4. Add new role to user. Delete previously-assigned admin role.
 
-## Configure Gradle with Nexus credentials
+## Exercise: Publish an NPM Package to Nexus
+
+1. Create `base-64` encoded string of nexus repo user and password:
+`echo -n 'admin:admin123' | openssl base64`
+
+2. Create `.npmrc` file in project root:
+`.npmrc`:
+```
+init-author-name = <author-name>
+init-author-email = <author-email>
+email=<author-email>
+always-auth=true
+_auth=<base-64-string>
+```
+
+3. `npm adduser --registry=http://<nexus-repo-url>`
+
+4. Enter nexus username and password when prompted
+
+5. From node project root:
+`npm pack`
+
+6. `npm publish`
+
+## Exercise: Upload a JAR file to Nexus repo from Gradle/Maven
+
+- Maven/Gradle commands exist for pushing to remote repo
+- Must configure both tools to connect to Nexus (with Nexus repo URL &credentials)
+- Avoid giving admin credentials for connection; create NEW NEXUS USER with upload permissions
+
+
+
+### Configure Gradle with Nexus credentials
 `build.gradle`
  ```
     plugins {
@@ -86,7 +113,7 @@ repoPassword=<password>
     rootProject.name="<jarfile-name>"
  ```
 
-## Upload Gradle project
+### Upload Gradle project
 
 1. Build JAR file:
     - ./gradlew build
@@ -95,7 +122,7 @@ repoPassword=<password>
     - cd <project-root>
     - ./gradlew publish
 
-## Configure Maven with Nexus credentials
+### Configure Maven with Nexus credentials
 
 1. Configure upload configuration:
     - Artifact & repo address

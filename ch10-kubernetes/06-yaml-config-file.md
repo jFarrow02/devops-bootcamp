@@ -9,7 +9,7 @@
 
 `deployment-config.yaml`:
 
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -21,8 +21,8 @@ spec:
   selector:
     matchLabels:
       app: nginx
-  template:
-    metadata:
+  template: # This configuration applies to PODS created in the deployment
+    metadata: 
       labels:
         app: nginx
     spec:
@@ -33,8 +33,9 @@ spec:
         - containerPort: 8080
 ```
 
-`service-config.yaml`
-```
+`service-config.yaml`:
+
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -53,9 +54,12 @@ spec:
 `spec.template` has its own `metadata` and `spec` sections that are the **templates** for the **pods** created by this deployment.
 
 ## Connecting Components: Labels, Selectors, & Ports
-`label` metadata key-value pair is assigned in deployment's `metadata`. The label is matched in pods that need to be connected by the deployment in the `selector.matchLabels.app` metadata.
+`label` metadata key-value pair is assigned in deployment's `metadata`. The label is matched in pods that need to be connected by the deployment in the `selector.matchLabels.app` metadata. **This is how the pods connect to the deployment.**
 
-`containerPort` and `targetPort` must match.
+In a **service**, we have the `spec.selector` attribute. **To connect a service to a deployment, this attribute shoulld match the `labels` attribute in the deployment.**
+
+
+To connect a PORT with its SERVICE, The **ports** of the **service** and its **pods** must match. Match the `containerPort` attribute of the pod, and `targetPort` attribute of the service.
 
 `kubectl describe service [service-name]`: Displays status info including TargetPort and Endpoints. Endpoints must be ip addrs and ports of pods to which service must forward the requests.
 

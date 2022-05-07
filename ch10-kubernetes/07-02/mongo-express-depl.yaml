@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-express-deployment
+  labels:
+    app: mongo-express-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mongo-express-deployment
+  template:
+    metadata:
+      labels:
+        app: mongo-express-deployment
+    spec:
+      containers:
+      - name: mongoexpress
+        image: mongo-express:latest
+        ports:
+        -  containerPort: 8081
+        env:
+        - name: ME_CONFIG_MONGODB_ADMINUSERNAME
+          valueFrom:
+              secretKeyRef:
+                name: mongodb-secret
+                key: mongo-root-username
+        - name: ME_CONFIG_MONGODB_ADMINPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: mongo-root-password
+        - name: ME_CONFIG_MONGODB_SERVER
+          valueFrom:
+            configMapKeyRef: # use the config map value
+              name: mongodb-configmap
+              key: database_url
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-express-service
+spec:
+  selector:
+    app: mongo-express-deployment
+  type: LoadBalancer # add 'type' attr and change value to LoadBalancer to create an External Service
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
+      nodePort: 30000 # Port where external service will be open in BROWSER

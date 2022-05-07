@@ -27,7 +27,7 @@
 
 `mongo-secret.yaml`:
 
-```
+```yaml
 apiVersion: v1
 kind: Secret
 metadata:
@@ -42,7 +42,7 @@ data:
 
 `mongo-depl.yaml`:
 
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -78,7 +78,7 @@ spec:
 
 `mongo-depl.yaml`
 
-```
+```yaml
 //...
 env:
 - name: MONGO_INITDB_ROOT_USERNAME
@@ -99,7 +99,7 @@ env:
 
 `mongo.yaml` (**NOTE**: Putting internal service and deployment in **same file** per convention)
 
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -155,7 +155,7 @@ spec:
 
 `mongo-config-map.yaml`:
 
-```
+```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -166,7 +166,7 @@ data:   // actual content in key-value pairs
 
 `mongo-express.yaml`:
 
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -216,7 +216,7 @@ Create Deployment:
 
 `mongo-express.yaml`:
 
-```
+```yaml
 // deployment configuration...
 
 ---

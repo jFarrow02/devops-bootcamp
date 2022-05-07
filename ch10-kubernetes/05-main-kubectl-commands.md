@@ -1,5 +1,7 @@
 # Basic Kubectl Commands
 
+**_NOTE:_** Use the syntax `minikube kubectl -- <cmd> <resource>` on Linux machines
+
 1. **Get Status of Components**:
     - `kubectl get nodes`
     - `kubectl get pods`
