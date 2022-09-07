@@ -15,8 +15,11 @@
     - External Service
         - allows requests from browser
 
+![sample app image](/ch10-kubernetes/k8s-demo-app-flow.png)
 
 ## Step 1: Create secret config:
+
+_The Secret does NOT get pushed to the code repository. It lives only in K8s so as not to expose sensitive data._
 
 - `type`:
     - Opaque: default type for arbitrary key-value pairs
@@ -227,7 +230,7 @@ metadata:
 spec:
   selector:
     app: mongo-express
-  type: LoadBalancer    // Add 'type: LoadBalancer': assigns service an **external** IP so it accepts extenal requests
+  type: LoadBalancer    # Add 'type: LoadBalancer': assigns service an **external** IP so it accepts extenal requests
   ports:
   - protocol: TCP
     port: 8081
@@ -237,3 +240,5 @@ spec:
 
 ## Step 8: Assign External IP Address (Minikube Only)
 - `minikube service [service-name]`
+
+![end demo app flow](/ch10-kubernetes/end-demo-app-flow.png)

@@ -13,7 +13,16 @@ In K8s, you can organize resources in **namespaces**. Think of it as a virtual c
 
 ## Adding a Namespace
 - `kubectl create namespace [namespace-name]`
-- OR, use a namespace file.
+- OR, use a namespace file **(preferred)**:
+``` yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: mysql-configmap
+    namespace: my-namespace # define namespace with 'namespace' attr under metadata
+data:
+    db_url: mysql-service.database
+```
 
 ## Why Namespaces?
 - Avoid cluttering the default namespace with lots of components

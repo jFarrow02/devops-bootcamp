@@ -25,7 +25,7 @@ For K8s cluster on a Cloud platform, you have 2 options:
 ## Managed K8s Cluster with Linode K8s Engine as Example
 
 1. Spin up K8s lcuster on cloud on LKE
-2. Choose worker nodes with resources in Linod UI
+2. Choose worker nodes with resources in Linode UI
 3. Select region/data center
 4. Connect to cluster from laptop with kubectl
 
@@ -35,7 +35,7 @@ For K8s cluster on a Cloud platform, you have 2 options:
 
 ### Load Balancing K8s Cluster
 Configure Services and Ingress:
-1. Install and run INgressController on cluster:
+1. Install and run IngressController on cluster:
     - Cloud proider has own load balancer implementation
     - For Linode, it's NodeBalancer. Provides public IP address in front of app server(s)
     - Can secure your conection with SSL Cert: configure with cert-manager

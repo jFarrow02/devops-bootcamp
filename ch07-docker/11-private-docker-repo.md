@@ -6,7 +6,7 @@ AWS ECR (Elastic Container Registry) is a service that provides private reposito
 1. Create a new ECR repository:
     - AWS console > ECR > Repositories > Create repository
     - Choose a public or private repository
-    - > Create repository
+    - Create repository
 
 2. For **private** repositories:
     - Retrieve an authentication token and authenticate your Docker client to your registry:

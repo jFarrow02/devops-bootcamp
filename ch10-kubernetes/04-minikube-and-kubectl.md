@@ -1,6 +1,6 @@
 # Minikube and kubectl
 
-**Minikube** is a one-node cluster where manager and worker processes run. Docker is pre-installed. It allows you to deploy new applications/components on your local machine. Useful for quickly creating clusters for local dev/testing purposes.
+**Minikube** is a one-node cluster where both manager and worker processes run. Docker is pre-installed. **It allows you to deploy new applications/components on your local machine**. Useful for quickly creating clusters for local dev/testing purposes.
 
 **kubectl** is a command line tool for K8s clusters. It is a client that allows you to interact with the Api Server process on the manager node and provision K8s components/services.
 

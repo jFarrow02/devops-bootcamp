@@ -30,7 +30,7 @@
 6. **Debugging Pods**:
     - `kubectl logs [pod-name]`
     - `kubectl describe pod [pod-name]`: shows state changes in pod
-    - `kubectl exec -it [pod-name] --bin/bash`: get interactive terminal of container running in [pod-name]
+    - `kubectl exec -it [pod-name] -- bin/bash`: get interactive terminal of container running in [pod-name]
 
 7. **Delete Deployment**:
     - `kubectl get deployment`

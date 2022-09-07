@@ -6,7 +6,7 @@ The most common way to do this is to:
 
 - Mount Docker runtime directory **from** instance **to** container as a volume. This will make Docker commands available inside Jenkins container.
 
-- Must **stop** the currently-running Jenkins container (if applicable), **mount** the new volume **and** the current volume (with the saved data/configuration for Jenkins) from server host, and start a new container.
+- Must **stop** the currently-running Jenkins container (if applicable), **mount the new volume and the current volume (with the saved data/configuration for Jenkins) from server host**, and start a new container.
 
 ## Stopping Container and Attaching New Volume
 

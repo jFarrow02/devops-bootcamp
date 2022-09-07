@@ -2,7 +2,7 @@
 
 `Jenkinsfile`:
 
-```
+``` groovy
 def gv
 
 pipeline {

@@ -12,6 +12,6 @@ What can you do with Jenkins?
 Jenkins has many plugins to integrate with Docker, Github, Nexus, AWS etc. and all applications with which it needs to integrate
 
 What do you need to configure?
-- Build tools (npm gradle, mvn etc)
+- Build tools (npm, gradle, mvn etc)
 - Test environments (e.g. databases)
 - Docker credentials etc.

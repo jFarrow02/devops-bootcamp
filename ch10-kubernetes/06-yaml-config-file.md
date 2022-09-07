@@ -45,8 +45,8 @@ spec:
         app: ningx
     ports:
         - protocol: TCP
-          port: 80
-          targetPort: 8080
+          port: 80 # port at which service is listening
+          targetPort: 8080 # pod port to which service forwards request; MUST match containerPort
 ```
 
 ## Blueprint for Pods (Template)
@@ -54,7 +54,7 @@ spec:
 `spec.template` has its own `metadata` and `spec` sections that are the **templates** for the **pods** created by this deployment.
 
 ## Connecting Components: Labels, Selectors, & Ports
-`label` metadata key-value pair is assigned in deployment's `metadata`. The label is matched in pods that need to be connected by the deployment in the `selector.matchLabels.app` metadata. **This is how the pods connect to the deployment.**
+`label` metadata key-value pair is assigned in component's `metadata`. Pods get the **same label(s)** in the `template.metadata.labels` attribute. The label is matched in pods that need to be connected by the component in the `selector.matchLabels.app` metadata. **This is how the pods connect to the component.**
 
 In a **service**, we have the `spec.selector` attribute. **To connect a service to a deployment, this attribute shoulld match the `labels` attribute in the deployment.**
 

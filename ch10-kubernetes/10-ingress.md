@@ -12,24 +12,24 @@ Browser --> `https://my-app.com` --> ingress --> internal service --> pod
 
 ## Ingress Configuration:
 
-```
+``` yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
     name: myapp-ingress
 spec:
-    rules:  // Routing rules
-    - host: myapp.com // must be valid domain addr; map domain name to node's IP address, which is the entrypoint
+    rules:  # Routing rules
+    - host: myapp.com # must be valid domain addr; map domain name to node's IP address, which is the entrypoint
       http:
-        paths: // the URL path after "/{domain-name}"
+        paths: # the URL path after "/{domain-name}"
         - backend:
-            serviceName: myapp-internal-service // Forward request to internal service
+            serviceName: myapp-internal-service # Forward request to internal service
             servicePort: 8080
 ```
 
 ## Internal Service Configuration
 
-```
+``` yaml
 apiVersion: v1
 kind: Service
 metadata:

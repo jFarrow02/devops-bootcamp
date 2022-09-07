@@ -12,7 +12,7 @@ Let's create a complete pipeline job from the `java-maven-app` freestyle jobs ex
 
 `Jenkinsfile`:
 
-```
+``` groovy
 
 pipeline {
 
@@ -45,7 +45,7 @@ pipeline {
                         usernamePassword(credentialsId: 'nexus-my-docker-hostedrepo', usernameVariable: 'USER', passwordVariable: 'PWD')
                     ]) {
                         sh "docker build -t $IMAGE_NAME ."
-                        sh "echo $PWD docker login -u $USER --password-stdin $HOST_PORT"
+                        sh "echo $PWD | docker login -u $USER --password-stdin $HOST_PORT"
                         sh "docker push $IMAGE_NAME"
                     }
                 }
