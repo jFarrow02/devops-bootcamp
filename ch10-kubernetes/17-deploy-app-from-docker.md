@@ -1,4 +1,4 @@
-# Deploy your App in K8s Cluster
+# Deploy your App in K8s Cluster from Private Docker Repository
 
 ## Common Workflow
 1. Commit to SCM

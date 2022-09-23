@@ -9,7 +9,7 @@ Persistent Volumes: a cluster resource used to store data.
 - Needs actual physical storage or cloud storage; **you** must decide what type, create that, and manage your storage option **yourself**.
 - Can have multiple storage locations/types per cluster
 - Persistent volumes are NOT namespaced; available to entire cluster
-- Provides an **interface** to the **persistent storage** that you, theadministrator, create.
+- Provides an **interface** to the **persistent storage** that you, the administrator, create.
 
 ### Persistent Volume Types
 1. Local: Local types **are** tied to one specific node and **do not** survive cluster crashes

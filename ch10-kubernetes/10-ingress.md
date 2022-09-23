@@ -3,12 +3,31 @@
 ## External Service vs. Ingress
 
 **External** Service:
-            [http] [service-ip] [service-port]
+Access the application via http protocol, using the node IP address and the port:
+            [http]://[service-ip]:[service-port]
 Browser --> `http://124.89.101.2:35010` --> service --> pod
 
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+    name: my-app-external-service
+spec:
+    selector:
+        app: my-app
+    type: LoadBalancer
+    ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 35010 # The port that the user enters into the browser; see above
+```
+
+Good for **testing** and **development**, not optimal for production.
+
 **Ingress**:
-IP address and port are NOT opened to public
-Browser --> `https://my-app.com` --> ingress --> internal service --> pod
+Access the application via http/https (must configure) protocol, using the **domain name** of the application. IP address and port are NOT opened to public:
+Browser --> `http://my-app.com` --> ingress --> internal service --> pod
 
 ## Ingress Configuration:
 
@@ -19,11 +38,11 @@ metadata:
     name: myapp-ingress
 spec:
     rules:  # Routing rules
-    - host: myapp.com # must be valid domain addr; map domain name to node's IP address, which is the entrypoint
+    - host: myapp.com # must be valid domain addr; map domain name (that user inputs into browser) to node's IP address (http.paths.backend.serviceName), which is the entrypoint
       http:
         paths: # the URL path after "/{domain-name}"
         - backend:
-            serviceName: myapp-internal-service # Forward request to internal service
+            serviceName: myapp-internal-service # Forward request to internal service identified by name of internal service (below)
             servicePort: 8080
 ```
 
@@ -41,10 +60,11 @@ spec:
     - protocol: TCP
       port: 8080
       targetPort: 8080
+      # Note: no nodePort attribute!
 ```
 
 ## How to Configure Ingress in your Cluster?
-You need an **Ingress Controller**, another set of pods that evaluate and process ingress rules. This will be the entrypoint for all requests to the domain/subdomain of the cluster. You can use many different 3rd-party implementations of Ingress Controller.
+You need an **Ingress Controller**, another set of pods in your cluster that evaluate and process ingress rules, and manage redirection. This will be the entrypoint for all requests to the domain/subdomain of the cluster. You can use many different 3rd-party implementations of Ingress Controller.
 
 ### Install Ingress Controller in Minikube
 - `minikube addons enable ingress`: Automatically starts the K8s nginx implementation of Ingress Controller. **Note**: OK to use for production.
@@ -54,12 +74,12 @@ You need an **Ingress Controller**, another set of pods that evaluate and proces
 
 `ingress.yaml`:
 
-```
+```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
     name: dashboard-ingress
-    namespace: kubernetes-dashboard // same namespace as service and pod
+    namespace: kubernetes-dashboard #same namespace as service and pod
 spec:
     rules:
     - host: dashboard.com
@@ -101,12 +121,12 @@ spec:
     ```
 
     `ingress.yaml`:
-    ```
-        //...
+    ```yaml
+        #...
         spec:
             tls:
             - hosts:
                 - myapp.com
                 secretName: myapp-secret-tls
-        //...
+        # ...
     ```

@@ -27,7 +27,7 @@ Differences
 
 2 main components:
 1. Core: uses 2 input sources:
-    - Terraform configureation: What to create/configure (execution plan)
+    - Terraform configuration: What to create/configure (execution plan)
     - State: state of current infrastructure
         - Terraform compares current state to desired end result, and updates current state accordingly.
 
@@ -53,7 +53,7 @@ resource "aws_vpc" "example" {
 ## How to Make Terraform Take Action?
 Commands:
 
-1. `refresh`: query ifra provider to get current state
+1. `refresh`: query infra provider to get current state
 2. `plan`: create an execution plan to achieve desired state defined in configuration file
 3. `apply`: execute the plan
 4. `destroy`: destroy the resources/infrastructure in the proper order

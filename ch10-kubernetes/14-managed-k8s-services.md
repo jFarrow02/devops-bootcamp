@@ -24,7 +24,7 @@ For K8s cluster on a Cloud platform, you have 2 options:
 
 ## Managed K8s Cluster with Linode K8s Engine as Example
 
-1. Spin up K8s lcuster on cloud on LKE
+1. Spin up K8s cluster on cloud on LKE
 2. Choose worker nodes with resources in Linode UI
 3. Select region/data center
 4. Connect to cluster from laptop with kubectl

@@ -2,18 +2,22 @@
 
 ## Overview
 1. Deploy mongodb using Helm
-2. 3 replicas using StatefulSet]
+2. 3 replicas using StatefulSet
 3. Configure data persistence w/ Linode cloud storage
 4. Deploy mongo-express UI client
 5. Configure nginx-ingress for mongo-express client
 
-Almost 100% of this setup is what you'd need for any database solution as a K8s cluster.
+Almost 100% of this setup is what you'd need for any solution as a K8s cluster.
 
 ## Step 1: Create K8s cluster on LKE
 1. `cloud.linode.com` > Kubernetes > Create your K8s cluster
 2. Download `Kubeconfig` file from Linode K8s cluster dashboard
 3. Set KUBECONFIG env var to Kubeconfig file path:
     - `export KUBECONFIG={kubeconfig-file-path}`
+    **NOTE**: You may need to switch contexts in `kubectl` as below:
+
+    ![switch-context](./switch-context.png)
+    
 4. You can now connect to your remote K8s environment on Linode from your local machine:
     - `kubectl get node` --> Displays your Linode K8s nodes
 
@@ -22,7 +26,7 @@ Use a bundle of pre-made config files (Helm Chart) to create your StatefulSet:
 1. Install `helm` (if not already installed):
     - `brew install helm`
 2. Search for the Helm Chart for mongodb
-3. Add mongodb Helm Repo:
+3. Add mongodb Helm Repo (NOTE: the helm and kubectl commands will execute against the current context/cluster):
     - `helm repo add bitnami https://charts.bitnami.com/bitnami`
 4. `helm search repo bitnami/mongo`
 5. Override default parameters in Helm Chart with a Values file:
@@ -46,11 +50,13 @@ auth:
 _See [https://github.com/bitnami/charts/tree/master/bitnami/mongodb](https://github.com/bitnami/charts/tree/master/bitnami/mongodb) for documentation_
 
 6. Execute command to install chart:
-    - `helm install {mongodb-name-in-cluster} --values test-mongodb.yaml {chart-name}`
+    - `helm search repo {chart-name}`: Search for name of chart {chart-name}
+7. Install chart in your cluster:
+    - `helm install {arbitrary-mongodb-name-in-cluster} --values test-mongodb.yaml {chart-name}`
 
-7. `kubectl get pod`
-8. `kubectl get all`
-9. `kubectl get secret`
+8. `kubectl get pod`
+9. `kubectl get all`
+10. `kubectl get secret`
 
 ## Deploy MongoExpress
 
@@ -105,12 +111,12 @@ spec:
 2. `kubectl apply -f test-mongo-express.yaml`
 
 ## Deploy Ingress Controller in Linode K8s cluster
+Open `mongo-express` cluster to requests coming in from browser using `Ingress`:
 
 1. Use Helm Chart for Ingress Controller:
     - `helm repo add nginx-stable https://helm.nginx.com/stable`
     - `helm repo update`
-    - `helm install my-release nginx-stable/nginx-ingress --set controller.publishService.enabled=true`
-
+    - `helm install my-release bitnami/nginx`
     - `kubectl get pod`
 
 ## Create Ingress Rule for Access from Browser to MongoExpress

@@ -59,7 +59,7 @@ spec:
 In a **service**, we have the `spec.selector` attribute. **To connect a service to a deployment, this attribute shoulld match the `labels` attribute in the deployment.**
 
 
-To connect a PORT with its SERVICE, The **ports** of the **service** and its **pods** must match. Match the `containerPort` attribute of the pod, and `targetPort` attribute of the service.
+To connect a PORT with its COMPONENT, The **ports** of the **service** and its **pods** must match. Match the `containerPort` attribute of the pod, and `targetPort` attribute of the component.
 
 `kubectl describe service [service-name]`: Displays status info including TargetPort and Endpoints. Endpoints must be ip addrs and ports of pods to which service must forward the requests.
 

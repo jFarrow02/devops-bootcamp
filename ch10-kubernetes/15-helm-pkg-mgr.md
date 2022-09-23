@@ -10,7 +10,7 @@
 You can search **Helm Hub** public registry, or running `helm search <keyword>` for public charts. There are also **private** registry tools for sharing within organizations.
 
 #### Templating Engine
-Template manifests for deploying similar components. Dynamic values are replaced by placeholders: `{{ .Values.<name> }}`. Values are supplied in a `values.yaml` file, or with command line `--set` flag. This is practical for CI/CD automated build pipelines.
+Template manifests for deploying similar components. Defines a common blueprint for the components. Dynamic values are replaced by placeholders: `{{ .Values.<name> }}`. Values are supplied in a `values.yaml` file, or with command line `--set` flag. This is practical for CI/CD automated build pipelines. Instead of having multiple yaml files for each component, you can now have one yaml file and replace the values dynamically with `values.yaml`. Also useful for deploying same applications across different environments.
 
 ### Helm Chart Structure
 ```
@@ -20,6 +20,8 @@ Template manifests for deploying similar components. Dynamic values are replaced
     |- charts/ --> directory with chart dependencies
     |- templates/ --> directory contains the actual templates
 ```
+### Execute Helm Chart
+- `helm install <chartname>`
 
 ### Values Injection
 - `helm install --values=my-values.yaml <chartname>`: Override values in `values.yaml` with values in `my-values.yaml`
