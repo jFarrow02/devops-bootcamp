@@ -12,4 +12,4 @@ Containers live in **container repositories**, which can be public or private. T
 
 - One command to fetch container and start, regardless of host machine OS
 
-- Simplifies deployment by eliminating dependenciy version conflicts and miscommunication of deployment configuration details
+- Simplifies deployment by eliminating dependency version conflicts and miscommunication of deployment configuration details

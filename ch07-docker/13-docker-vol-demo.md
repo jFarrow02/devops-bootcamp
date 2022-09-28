@@ -34,4 +34,4 @@ volumes:
 1. Windows: `C:\ProgramData\docker\volumes`
 2. Linux/Mac: `var/lib/docker/volumes`
 
-Each anonymous volume will be identified by its own unique has followed by `/_data`. Named volumes will be identified by name.
+Each anonymous volume will be identified by its own unique hash followed by `/_data`. Named volumes will be identified by name.

@@ -7,4 +7,8 @@ The **OS Kernel** is the part that communicates with the hardware. **Application
 
 **Docker** virtualizes the Application layer. It uses the kernel of the HOST, because it doesn't have its own kernel. **VM**s have their own kernel, and virtualize both the application and kernel.
 
-Docker images may not run on hosts with different kernels than the image itself. VMs don't have this issue.
+![docker vs. vm](./docker-vs-vm.png)
+
+- Size of docker images much smaller
+- Docker containers start and run much faster
+- Docker images may not run on hosts with different kernels than the image itself. VMs don't have this issue.
