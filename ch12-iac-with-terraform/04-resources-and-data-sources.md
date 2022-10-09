@@ -8,8 +8,8 @@ Terraform docs), and the necessary **attributes** also defined in the docs.
 ```
 provider "aws" {
     region = "us-east-1"
-    access_key = "AKIA33VP3QQIUAMZR4IO"
-    secret_key = "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"
+    access_key = ""
+    secret_key = ""
 }
 
 resource "{terraform resource name} {given-resource-name}
@@ -18,8 +18,8 @@ resource "{terraform resource name} {given-resource-name}
 ```
 provider "aws" {
     region = "us-east-1"
-    access_key = "AKIA33VP3QQIUAMZR4IO"
-    secret_key = "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"
+    access_key = ""
+    secret_key = ""
 }
 
 resource "aws_vpc" "development-vpc" {
@@ -50,8 +50,8 @@ allows you to **query existing resources** in the cloud provider.
 ```
 provider "aws" {
     region = "us-east-1"
-    access_key = "AKIA33VP3QQIUAMZR4IO"
-    secret_key = "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"
+    access_key = ""
+    secret_key = ""
 }
 
 resource "aws_vpc" "development-vpc" {

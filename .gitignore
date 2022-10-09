@@ -1,2 +1,2 @@
-*/exercise/exercise*.md
-*/terraform/*.tf
+# ignore terraform files
+*/*-demo-files
