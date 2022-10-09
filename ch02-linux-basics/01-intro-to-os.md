@@ -1,0 +1,24 @@
+# Intro to Operating Systems
+
+Every computer is made up of hardware resources:
+
+- CPU
+- Memory
+- Storage (HDD/SSD)
+- I/O devices (keyboard, mouse etc.)
+
+**How to interact with these hardware as a "user" (human or application)?**
+
+The applications themselves **don't know** how to interact with these hardware
+parts! Instead, all applications use an **intermediary**, the OS to interact
+with the hardware resources.
+
+An **operating system**:
+
+- Allocates and manages hardware resources:
+
+  1. CPU Process management: 1 CPU can process one process at a time; switches
+     processes so fast you don't notice. Multi-CPUs can execute processes in
+     parallel
+
+  2. Memory (RAM) Management: Allocates working memory to running applications.
