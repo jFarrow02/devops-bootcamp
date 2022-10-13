@@ -1,0 +1,20 @@
+---
+apiVersion: apps/v1
+kind: Deployemnt
+metadata:
+  name: proxyserver
+spec:
+  selector:
+    matchLabels:
+      app: proxyserver
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: proxyserver
+    spec:
+      containers:
+        - name: proxyserver
+          image: nginx
+          ports:
+            - containerPort: 80
