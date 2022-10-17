@@ -60,6 +60,8 @@ etc.
 
 ## Display OS Information
 
+- `cat /etc/issue`: Display OS name and version information
+
 - `uname -a`: Display system information and kernel
 
 - `cat /etc/os-release`: Display OS information

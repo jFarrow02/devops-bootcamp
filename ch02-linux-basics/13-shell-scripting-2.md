@@ -74,3 +74,113 @@ if [ num_files -eq 10 ]
 | -le     | Checks if the value of left operand is less than or equal to the value of right operand; if yes, the condition becomes true     |
 
 ### String Operator
+
+```sh
+user_group=xx
+
+if [ "$user_group" == "jamesbond" ]
+then
+    echo "configure the server"
+elif [ "$user_group" == "admin" ]
+then
+    echo "administer the server"
+else
+    echo "No permission to configure server; wrong user group"
+fi
+```
+
+| Operator | Use                                                                                  |
+| -------- | ------------------------------------------------------------------------------------ |
+| =        | Checks if the value of two operands are equal; if yes, then condition becomes true.  |
+| !=       | Checks if the value of two operands are not equal; if no the condition becomes true. |
+| -z       | Checks if the given string operand size is zero; if yes, then it returns true.       |
+| -n       | Checks if the given string operand size is non-zero; if yes, then it returns true.   |
+| str      | Checks if str is not an empty string; if yes, then it returns false                  |
+
+## Passing Arguments to a Script
+
+You can provide parameters to your script when you execute it.
+
+To read parameters passed to a script, use the special `${index}` variable:
+
+```sh
+#!/bin/bash
+
+user_group=$1
+
+if [ "$user_group" == "jamesbond" ]
+then
+    echo "configure the server"
+elif [ "$user_group" == "admin" ]
+then
+    echo "administer the server"
+else
+    echo "No permission to configure server; wrong user group"
+fi
+```
+
+Pass parameters to the script at runtime as follows:
+
+- `./{script-name}.sh {parameter1, parameter2...}`
+
+### Multiple Parameters Using `$*`
+
+The `$*` is a special variable that gives access to all passed parameters. `$#`
+gives the **number** of all passed parameters.
+
+## Read User Input
+
+You can read user input from a shell script using the `read` command:
+
+- `read -p "<prompt>"`
+
+```sh
+
+#!/bin/bash
+
+echo "Reading user input..."
+
+read -p "Please enter your password: " user_pwd
+
+echo "thanks for your password $user_pwd"
+```
+
+## "For" Loop Syntax
+
+```sh
+
+#!/bin/bash
+
+for param in $*
+    do
+        if [ -d "$param" ]
+            then
+                echo "executing scripts in the config folder"
+        else
+            echo $param
+    done
+```
+
+## "While" Loop Syntax
+
+```sh
+#!/bin/bash
+
+sum=0
+
+while true
+    do
+        read -p "enter a score" score
+        if [ score == "q" ]
+        then
+            break
+        fi
+        sum=$(($sum+$score))
+        echo "total score: $sum"
+    done
+```
+
+Note the **Arithmetic Operation** syntax:
+
+- `$(( 2 + 4 ))`
+- `$(( $num1 + $num2 ))`
