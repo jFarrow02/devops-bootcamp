@@ -7,16 +7,22 @@
    - Pod
    - Internal Service (no external requests allowed to pod)
    - Only components inside cluster
-   - Config Map
-     - db url
-   - Secret (avoid exposing secret information in files that will be checked in
-     to SCM)
-     - db user
-     - db password
 
 2. Mongo Express App
-   - External Service
-     - allows requests from browser
+
+   - Need DB URL of Mongo DB
+
+3. Config Map
+
+   - DB URL
+
+4. Secret
+
+   - DB User
+   - DB Password
+
+5. External Service
+   - allows requests from browser to Mongo Express pod
 
 ![sample app image](/ch10-kubernetes/k8s-demo-app-flow.png)
 
@@ -87,7 +93,7 @@ spec:
 `mongo-depl.yaml`
 
 ```yaml
-//...
+# ...
 env:
 - name: MONGO_INITDB_ROOT_USERNAME
     valueFrom:
@@ -100,8 +106,20 @@ env:
         secretKeyRef:
             name: mongodb-secret
             key: mongo-root-password
-//...
+# ...
 ```
+
+#### Verify that `mongodb` Deployment Pods are Connected to Service:
+
+- `kubectl get pod -o wide`: Outputs the IP addresses of the pods
+
+![pod wide output](./pod-wide-output.png)
+
+- `kubectl describe service {mongodb-service-name}`: Prints metadata about
+  service, including `Endpoints` attribute which lists the IP addresses of the
+  associated pods:
+
+![describe service](./describe-service.png)
 
 ## Step 5: Create InternalService
 
@@ -156,7 +174,7 @@ spec:
     targetPort: 27017 # containerPort of deployment
 ```
 
-## Step 6: Create Mongoexpress Deployment & Service
+## Step 6: Create Mongo Express Deployment & Service
 
 **Optional**: Create (shared) `ConfigMap` with mongodb server connection string,
 in case multiple applications in the cluster will connect to mongo

@@ -5,12 +5,20 @@ As a devops engineer, you should understand:
 1. What ms are we deploying?
 2. How are they connected?
 3. Any 3rd party services (e.g. message brokers) or databases?
-4. Which service is accessible from outside the cluster/ the entrypoint service?
+4. Which service is accessible from outside the cluster, i.e. which is the
+   entrypoint service?
 5. Image name for each service
 6. What env vars each image expects
 7. Ports for each MS
 
 ![ms architecture](./ms-architecture.png)
+
+### Frontend Microservice is the Gateway
+
+A **frontend** service is the gateway from the internet to the other
+microservices:
+
+![frontend ms](./frontend-ms.png)
 
 ## Create Deployment & Service Config Files
 
@@ -23,37 +31,37 @@ As a devops engineer, you should understand:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: emailservice
+  name: emailservice
 spec:
-    selector:
-        matchLabels:
-            app: emailservice
-    template:
-        metadata:
-            labels:
-                app: emailservice
-        spec:
-            containers:
-            - name: service
-              image: gcr.io/google-samples/micorservices-demo/emailservice
-              ports:
-              - containerPort: 8080
-              env:
-              - name: PORT
-                value: "8080"
----
-apiVersion: v1
-kind: Service
-metadata:
-    name: emailservice
-spec:
-    type: ClusterIP
-    selector:
+  selector:
+    matchLabels:
+      app: emailservice
+  template:
+    metadata:
+      labels:
         app: emailservice
-    ports:
-        - protocol: TCP
-          port: 5000
-          targetPort: 8080
+    spec:
+      containers:
+        - name: service
+          image: gcr.io/google-samples/micorservices-demo/emailservice
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PORT
+              value: '8080'
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: emailservice
+spec:
+  type: ClusterIP
+  selector:
+    app: emailservice
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 8080
 
 ---
 
@@ -61,33 +69,33 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: xxx
+  name: xxx
 spec:
-    selector:
-        matchLabels:
-            app: xxx
-    template:
-        metadata:
-            labels:
-                app: xxx
-        spec:
-            containers:
-            - name: xxx
-              image: xxx
-              ports:
-              - containerPort: xxx
+  selector:
+    matchLabels:
+      app: xxx
+  template:
+    metadata:
+      labels:
+        app: xxx
+    spec:
+      containers:
+        - name: xxx
+          image: xxx
+          ports:
+            - containerPort: xxx
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    name: xxx
+  name: xxx
 spec:
-    selector:
-        app: xxx
-    ports:
-        - protocol: TCP
-          port: 80
-          targetPort: 8080
+  selector:
+    app: xxx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
 
 ---
 
@@ -95,33 +103,33 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: xxx
+  name: xxx
 spec:
-    selector:
-        matchLabels:
-            app: xxx
-    template:
-        metadata:
-            labels:
-                app: xxx
-        spec:
-            containers:
-            - name: xxx
-              image: xxx
-              ports:
-              - containerPort: xxx
+  selector:
+    matchLabels:
+      app: xxx
+  template:
+    metadata:
+      labels:
+        app: xxx
+    spec:
+      containers:
+        - name: xxx
+          image: xxx
+          ports:
+            - containerPort: xxx
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    name: xxx
+  name: xxx
 spec:
-    selector:
-        app: xxx
-    ports:
-        - protocol: TCP
-          port: 80
-          targetPort: 8080
+  selector:
+    app: xxx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
 
 ---
 
@@ -129,33 +137,33 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: xxx
+  name: xxx
 spec:
-    selector:
-        matchLabels:
-            app: xxx
-    template:
-        metadata:
-            labels:
-                app: xxx
-        spec:
-            containers:
-            - name: xxx
-              image: xxx
-              ports:
-              - containerPort: xxx
+  selector:
+    matchLabels:
+      app: xxx
+  template:
+    metadata:
+      labels:
+        app: xxx
+    spec:
+      containers:
+        - name: xxx
+          image: xxx
+          ports:
+            - containerPort: xxx
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    name: xxx
+  name: xxx
 spec:
-    selector:
-        app: xxx
-    ports:
-        - protocol: TCP
-          port: 80
-          targetPort: 8080
+  selector:
+    app: xxx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
 
 ---
 
@@ -163,33 +171,33 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: xxx
+  name: xxx
 spec:
-    selector:
-        matchLabels:
-            app: xxx
-    template:
-        metadata:
-            labels:
-                app: xxx
-        spec:
-            containers:
-            - name: xxx
-              image: xxx
-              ports:
-              - containerPort: xxx
+  selector:
+    matchLabels:
+      app: xxx
+  template:
+    metadata:
+      labels:
+        app: xxx
+    spec:
+      containers:
+        - name: xxx
+          image: xxx
+          ports:
+            - containerPort: xxx
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    name: xxx
+  name: xxx
 spec:
-    selector:
-        app: xxx
-    ports:
-        - protocol: TCP
-          port: 80
-          targetPort: 8080
+  selector:
+    app: xxx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
 
 ---
 
@@ -197,33 +205,33 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: xxx
+  name: xxx
 spec:
-    selector:
-        matchLabels:
-            app: xxx
-    template:
-        metadata:
-            labels:
-                app: xxx
-        spec:
-            containers:
-            - name: xxx
-              image: xxx
-              ports:
-              - containerPort: xxx
+  selector:
+    matchLabels:
+      app: xxx
+  template:
+    metadata:
+      labels:
+        app: xxx
+    spec:
+      containers:
+        - name: xxx
+          image: xxx
+          ports:
+            - containerPort: xxx
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    name: xxx
+  name: xxx
 spec:
-    selector:
-        app: xxx
-    ports:
-        - protocol: TCP
-          port: 80
-          targetPort: 8080
+  selector:
+    app: xxx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
 
 ---
 
@@ -231,33 +239,33 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: xxx
+  name: xxx
 spec:
-    selector:
-        matchLabels:
-            app: xxx
-    template:
-        metadata:
-            labels:
-                app: xxx
-        spec:
-            containers:
-            - name: xxx
-              image: xxx
-              ports:
-              - containerPort: xxx
+  selector:
+    matchLabels:
+      app: xxx
+  template:
+    metadata:
+      labels:
+        app: xxx
+    spec:
+      containers:
+        - name: xxx
+          image: xxx
+          ports:
+            - containerPort: xxx
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    name: xxx
+  name: xxx
 spec:
-    selector:
-        app: xxx
-    ports:
-        - protocol: TCP
-          port: 80
-          targetPort: 8080
+  selector:
+    app: xxx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
 
 ---
 
@@ -265,33 +273,33 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: xxx
+  name: xxx
 spec:
-    selector:
-        matchLabels:
-            app: xxx
-    template:
-        metadata:
-            labels:
-                app: xxx
-        spec:
-            containers:
-            - name: xxx
-              image: xxx
-              ports:
-              - containerPort: xxx
+  selector:
+    matchLabels:
+      app: xxx
+  template:
+    metadata:
+      labels:
+        app: xxx
+    spec:
+      containers:
+        - name: xxx
+          image: xxx
+          ports:
+            - containerPort: xxx
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    name: xxx
+  name: xxx
 spec:
-    selector:
-        app: xxx
-    ports:
-        - protocol: TCP
-          port: 80
-          targetPort: 8080
+  selector:
+    app: xxx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
 
 ---
 
@@ -299,33 +307,33 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: xxx
+  name: xxx
 spec:
-    selector:
-        matchLabels:
-            app: xxx
-    template:
-        metadata:
-            labels:
-                app: xxx
-        spec:
-            containers:
-            - name: xxx
-              image: xxx
-              ports:
-              - containerPort: xxx
+  selector:
+    matchLabels:
+      app: xxx
+  template:
+    metadata:
+      labels:
+        app: xxx
+    spec:
+      containers:
+        - name: xxx
+          image: xxx
+          ports:
+            - containerPort: xxx
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    name: xxx
+  name: xxx
 spec:
-    selector:
-        app: xxx
-    ports:
-        - protocol: TCP
-          port: 80
-          targetPort: 8080
+  selector:
+    app: xxx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
 
 ---
 
@@ -333,33 +341,33 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: xxx
+  name: xxx
 spec:
-    selector:
-        matchLabels:
-            app: xxx
-    template:
-        metadata:
-            labels:
-                app: xxx
-        spec:
-            containers:
-            - name: xxx
-              image: xxx
-              ports:
-              - containerPort: xxx
+  selector:
+    matchLabels:
+      app: xxx
+  template:
+    metadata:
+      labels:
+        app: xxx
+    spec:
+      containers:
+        - name: xxx
+          image: xxx
+          ports:
+            - containerPort: xxx
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    name: xxx
+  name: xxx
 spec:
-    selector:
-        app: xxx
-    ports:
-        - protocol: TCP
-          port: 80
-          targetPort: 8080
+  selector:
+    app: xxx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
 
 ---
 
@@ -367,34 +375,33 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: xxx
+  name: xxx
 spec:
-    selector:
-        matchLabels:
-            app: xxx
-    template:
-        metadata:
-            labels:
-                app: xxx
-        spec:
-            containers:
-            - name: xxx
-              image: xxx
-              ports:
-              - containerPort: xxx
+  selector:
+    matchLabels:
+      app: xxx
+  template:
+    metadata:
+      labels:
+        app: xxx
+    spec:
+      containers:
+        - name: xxx
+          image: xxx
+          ports:
+            - containerPort: xxx
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    name: xxx
+  name: xxx
 spec:
-    selector:
-        app: xxx
-    ports:
-        - protocol: TCP
-          port: 80
-          targetPort: 8080
+  selector:
+    app: xxx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
 
 ---
-
 ```
