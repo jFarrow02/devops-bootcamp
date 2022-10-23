@@ -31,10 +31,12 @@ leave defaults created by AWS (or other cloud provider) as-is.
 
 4. View created components:
    - **Route Table** for your VPC: A "virtual router" in your private VPC.
-     Decides where traffic will be forwarded within your new VPC.
-   - **Network Access Control List (ACL)**: Firewall config for VPC that applies
-     to **subnets** within the VPC (security groups apply to **servers**). NACLs
-     are OPEN by default, Security Groups are CLOSED by default.
+     Decides where traffic will be forwarded within your new VPC. AWS generates
+     a route table by default for every new VPC.
+   - **Network Access Control List (NACL)**: Firewall config for VPC that
+     applies to **subnets** within the VPC (security groups apply to
+     **servers**). NACLs are OPEN by default, Security Groups are CLOSED by
+     default.
 5. Create a **Route Table** and an **Internet Gateway** to handle traffic
    to/from the **public internet** (i.e. OUTSIDE of your VPC). Note that
    Terraform is smart enough to create the components in the correct order

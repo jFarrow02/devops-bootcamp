@@ -22,7 +22,7 @@ machine. No need to install agent on the target server(s).
 
 ## Ansible Architecture
 
-Ansible works with **modules**, small programs that do the work. Modultes get
+Ansible works with **modules**, small programs that do the work. Modules get
 pushed to the target server, do their work, and then get removed. Modules are
 granular, i.e. they do one small, specific task. Ansible has hundreds of modules
 that each execute a specific task.

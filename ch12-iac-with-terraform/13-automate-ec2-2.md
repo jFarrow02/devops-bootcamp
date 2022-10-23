@@ -41,6 +41,21 @@ resource "aws_instance" "myapp-server" {
 Add the `instance_type` environment variable declaration to `main.tf` and set
 the value in the `.tfvars` file.
 
+`main.tf`:
+
+```
+variable instance_type {
+  description: "EC2 instance type:
+  type: string
+}
+```
+
+`terraform.tfvars`:
+
+```
+instance_type = "t2.micro" # or desired instance type
+```
+
 3. Set SSH keys in `main.tf`:
    - NOTE: When creating a new SSH key pair, best practice is to keep in
      `~/.ssh` directory

@@ -5,8 +5,7 @@
 We can now modularize our project by turning our `main.tf` file into multiple
 files.
 
-It is a common practice sto structure your terraform project in the following
-way:
+It is a common practice structure your terraform project in the following way:
 
 ```
 |-.terraform

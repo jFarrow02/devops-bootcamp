@@ -47,6 +47,14 @@ From the terminal where your `terraform` directory is located:
 **Data Sources** allow data to be fetched for use in Terraform configuration. It
 allows you to **query existing resources** in the cloud provider.
 
+The **Argument Reference** section of the Terraform docs for the given resource
+will tell you **what attributes** are available to set/change on the resource.
+For example the
+[docs for the `aws_vpc` provider's arguments](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/vpc#argument-reference)
+contain the following information:
+
+![aws-vpc data](./terraform-aws-vpc-data.png)
+
 ```
 provider "aws" {
     region = "us-east-1"
@@ -64,13 +72,15 @@ resource "aws_subnet" "dev-subnet-1" {
     availability_zone = "eu-west-3a"
 }
 
+# Use a data source to create resources in the
+# default vpc
 data "aws_vpc" "existing_vpc" {
     default = true
 }
 
 resource "aws_subnet" "dev-subnet-2" {
-    vpc_id = data.aws_vpc.existing_vpc.id
-    cidr_block = "172.31.48.0/20"
+    vpc_id = data.aws_vpc.existing_vpc.id # add "data" prefix
+    cidr_block = "172.31.48.0/20" # subset of IP addrs from DEFAULT vpc that are not already taken by EXISTING subnets in vpc
     availability_zone = "eu-west-3a"
 }
 ```

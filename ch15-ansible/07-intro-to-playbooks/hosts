@@ -1,0 +1,7 @@
+[webserver]
+134.209.255.142
+134.209.235.158
+
+[webserver:vars]
+ansible_ssh_private_key_file={ssh-private-key-location}
+ansible_user=root
