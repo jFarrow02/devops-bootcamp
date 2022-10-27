@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:
+    { { .Values.appName } } # Values is a built-in object; empty by default. Values are passed into template from 3 sources:
+    # values.yaml file in chart
+    # user-supplied via -f flag
+    # parameter passed with --set flag
+spec:
+  replicas: { { .Values.appReplicas } }
+  selector:
+    matchLabels:
+      app: { { .Values.appName } }
+  template:
+    metadata:
+      labels:
+        app: { { .Values.appName } }
+    spec:
+      containers:
+        - name: { { .Values.appName } }
+          image: '{ { .Values.appImage } }:{{ .Values.appVersion }}'
+          ports:
+            - containerPort: { { .Values.containerPort } }
+          env:
+            # range function loops over each element in list
+          {{- range .Values.containerEnvVars}} 
+            - name: {{ .name }}
+              value: {{ .value | quote }}
+          {{end}}
