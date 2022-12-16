@@ -15,32 +15,26 @@ credentials.
 - `terraform apply -var-file {tf-var-filename}.tfvars`: Terraform will be able
   to use the credentials and authenticate with no additional configuration.
 
-  ## Set Global Env Variables using `tf_var` Prefix
+## Set Global Env Variables using`tf_var` Prefix
 
-  - `export TF_VAR_avail_zone="eu-west-3a"`: Set the env var with the TF_VAR
-    prefix
+- `export TF_VAR_avail_zone="eu-west-3a"`: Set the env var with the TF_VAR
+  prefix
+- Declare the variable inside the`.tfvars` file:
 
-  - Declare the variable inside the`.tfvars` file:
+```
+  provider "aws" {}
+  // ...
+  // Declare the "avail_zone"variable
+  variable avail_zone{}
+  // use the variable
+  resource "aws_subnet""dev-subnet-1" {
+      vpc_id = aws_vpcdevelopment-vpc.id
+      cidr_block = var.cidr_block[1].cidr_block
+      availability_zone = var.avail_zone
+      tags = {
+          Name: var.cidr_block[1].name
+      }
+  }
+```
 
-  ```
-
-    provider "aws" {}
-
-    // ...
-
-    // Declare the "avail_zone" variable
-    variable avail_zone{}
-
-    // use the variable
-
-    resource "aws_subnet" "dev-subnet-1" {
-        vpc_id = aws_vpc.development-vpc.id
-        cidr_block = var.cidr_blocks[1].cidr_block
-        availability_zone = var.avail_zone
-        tags = {
-            Name: var.cidr_blocks[1].name
-        }
-    }
-  ```
-
-  `terraform apply -var-file {tf-var-filename}.tfvars`
+`terraform apply -var-file{tf-var-filename}.tfvars`

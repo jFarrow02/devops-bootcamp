@@ -12,7 +12,7 @@ provider "aws" {
     secret_key = ""
 }
 
-resource "{terraform resource name} {given-resource-name}
+resource "{terraform resource name}" "{given-resource-name}"
 ```
 
 ```

@@ -1,7 +1,7 @@
 # Variables in Terraform
 
 You can user variables as input values in Terraform. Input variables are like
-functon arguments.
+function arguments.
 
 - Values used multiple times for different resources
 - Re-use terraform files for multiple resources (e.g. `dev` and `prod`)
@@ -109,7 +109,7 @@ You can also use **objects** as variables in Terraform:
 `terraform-dev.tfvars`:
 
 ```
-cidr_blocks = [{cidr_block: "10.0.0.0/16", name: "dev-vpc"}, {cider_block = "10.0.50.0/24", name = "dev-subnet" }]
+cidr_blocks = [{cidr_block: "10.0.0.0/16", name: "dev-vpc"}, {cidr_block = "10.0.50.0/24", name = "dev-subnet" }]
 
 ```
 

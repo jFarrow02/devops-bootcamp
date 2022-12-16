@@ -1,4 +1,4 @@
-# Modules in Terraform Pt.2: Modularize our Project
+# Modules in Terraform Pt.3: Modularize our Project
 
 ## Refactoring the Project Structure
 

@@ -43,9 +43,10 @@ Use the **square bracket syntax** to give the droplets a group name:
 # ...
 ```
 
-Execute Ansible command to target only droplets:
+Execute Ansible command to target only droplets (**from the LOCAL machine** if
+connecting locally):
 
-- `ansible droplet -i hosts -m ping`
+- `ansible {group-name} -i hosts -m ping`
 
 Execute on one **specific server** in the group:
 

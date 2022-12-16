@@ -51,7 +51,7 @@ command:
     - name: Copy nodejs folder to a server
       copy:
         src: /path/to/tarfile/file-name.tgz
-        dest: /root/target-file-name.tgz
+        dest: /root/target-file-name.tgz # Note that this will be the home directory of whatever user you configured as "ansible_user" in hosts file
 
     - name: unpack the nodejs tar file
       unarchive:

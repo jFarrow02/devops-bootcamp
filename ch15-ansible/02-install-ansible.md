@@ -4,7 +4,8 @@ There are 2 locations where we can install Ansible:
 
 - **Locally** on your local machine, or
 
-- On a **remote** server
+- On a **remote** server, where Ansible is installed. You use this remote server
+  to manage **other** remote servers.
 
 Using Ansible will work the same no matter where you install it.
 

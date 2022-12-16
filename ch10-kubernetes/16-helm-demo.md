@@ -49,8 +49,11 @@ auth:
   rootPassword: secret-root-pwd
 ```
 
-`persistence.storageClass`: - Connects to Linode - Creates physical storage -
-attaches to your Pods
+`persistence.storageClass`:
+
+- Connects to Linode
+- Creates physical storage
+- attaches to your Pods
 
 _See
 [https://github.com/bitnami/charts/tree/master/bitnami/mongodb](https://github.com/bitnami/charts/tree/master/bitnami/mongodb)

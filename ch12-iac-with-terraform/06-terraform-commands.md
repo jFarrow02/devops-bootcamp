@@ -1,6 +1,6 @@
 # Terraform Commands
 
-1. `terraform plan`: Displays the actions that terraform _will_ executed if you
+1. `terraform plan`: Displays the actions that terraform _will_ execute if you
    execute `terrafrom apply`
 
 2. `terraform apply -auto-approve`: Applys terraform config immediately without

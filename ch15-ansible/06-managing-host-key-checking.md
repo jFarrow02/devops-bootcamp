@@ -10,21 +10,23 @@ message!
 
 ## Authorized Keys and Known Hosts
 
-2 options based on:
+There are 2 options for handling host key checking based on:
 
 - "long-lived" servers
 - ephemeral or temporary servers
 
-The `~/.ssh/known_hosts` file contains a list of all the servers you've ever
-SSH-d into.
+The `~/.ssh/known_hosts` file contains a list of all the IP addresses of servers
+you've ever SSH-d into.
 
-You can **add an entry** into the know hosts file with the following commands:
+You can **add an entry** with the remote server's IP address into the know hosts
+file with the following commands:
 
 - `ssh-keyscan -H {new-host-ip} >> ~/.ssh/known_hosts`: Add new host to known
   hosts
 
 - `ssh-copy-id root@{remote-host-ip}`: Store connecting machine's public SSH key
-  on remote server (if you did NOT specify key upon creating the server)
+  on remote server (if you connected via username/password and did NOT specify
+  key upon creating the server)
 
 ### Disable Host Key Checking
 

@@ -11,12 +11,22 @@ There are **2 minimum required files** in an Ansible Playbook:
 - `{playbook-name}.yaml`: Contains at least one task to execute. A playbook can
   have multiple "plays" (tasks).
 
+```
+|- ansible_project_dir
+|-- /hosts
+|-- /my-playbook.yaml
+|-- /ansible.cfg
+```
+
 ## Create Playbook
+
+A **playbook** is a file that describes **what tasks** we want to run on **what
+hosts**. Tasks ("**plays**") in a playbook run in order from top to bottom:
 
 `my-playbook.yaml`
 
 ```yaml
----
+--- # Separate blocks with "---"
 - name: Config nginx webserver
   hosts: webserver
   tasks:
@@ -29,6 +39,17 @@ There are **2 minimum required files** in an Ansible Playbook:
         name: nginx
         state: started
 ```
+
+- `name` (Optional): Name tag for play
+- `hosts`: defines which servers to run the play on. Can specify an individual
+  server or a group
+- `tasks`: List of commands to execute on all hosts defined by the `hosts`
+  attribute. Each task has at lease one:
+  - `name`
+  - Module (command) to execute on server. These correspond to Ansible
+    **modules**. Each module has the following attributes:
+    - `name`
+    - `state`: describes the desired state of the module/service
 
 ## Execute Playbook
 

@@ -1,7 +1,7 @@
 # Terraform vs. Python: When to Use Which?
 
-| Terraform                                                              | Python                                                                                  |
-| ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ---------------------------------------- | ------------------------------------------------------- |
+| Terraform | Python |
+|-----------|--------|
 | Manages and knows current state vs. configured/desired state           | Does **not** maintain state; Python does not know about current state of infrastructure |
 | Idempotent; multiple execution of same config will produce same result | **Non-idempotent**; multiple execution of same config will **duplicate** results        |
 | Deleting resources as easy as deleting configuration from config file  | Must **explicitly** delete resources (and any _dependent_ resources, g.g. subnets)      | High-level syntax is and easier to write | Low-level programming syntax is more difficult to write |
